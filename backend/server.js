@@ -1,9 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const todoRoutes = require('./routes/todoRoutes');
+
 
 const app = express();
 app.use(express.json());
+
+
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/todo';
 port = process.env.PORT || 4000;
 
@@ -18,3 +22,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/todoApp')
 .catch((err) => {
     console.log(`Error: ${err}`);
 });
+
+
+app.use("/todo",todoRoutes);
